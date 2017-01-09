@@ -11,6 +11,7 @@
     <modules>
         <module>SpringBootCommon</module>
         <module>SpringBootTest</module>
+        <module>SpringMVCBasic</module>
     </modules>
 
 
