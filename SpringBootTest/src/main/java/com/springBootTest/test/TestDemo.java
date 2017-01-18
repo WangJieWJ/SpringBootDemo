@@ -147,6 +147,8 @@ public class TestDemo {
 
         try {
 
+            System.out.println("测试冲突！！！");
+
             String HTML="%E6%B5%8B%E8%AF%95%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81";
             System.out.println(URLDecoder.decode(HTML,"UTF-8"));
             System.out.println(URLDecoder.decode(HTML,"GB2312"));
@@ -172,7 +174,6 @@ public class TestDemo {
             System.out.println(newGB2312);
 
 
-            System.out.println("-------------------------------------------------------------------");
             System.out.println("解码编码测试");
             String _str="中文乱码测试";
             String _str1= URLEncoder.encode(_str,"GBK");
