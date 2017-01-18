@@ -15,7 +15,7 @@ import java.util.Date;
  */
 public class DateUtil {
 
-    public static SimpleDateFormat simpleDateFormat;
+    public  static SimpleDateFormat simpleDateFormat;
 
     public static String getFormatDateStr(String format, Date date) {
         if (date == null) {

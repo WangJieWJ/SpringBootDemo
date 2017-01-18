@@ -11,9 +11,9 @@ package com.springboot.common;
 public class Constants {
 
 
-    public static String DATE_FORMAT_1="yyyy-MM-dd hh:mm:ss";
-    public static String DATE_FORMAT_2="yyyy-MM-dd";
-    public static String DATE_FORMAT_3="yyyy年M月d日";
+    public final static  String DATE_FORMAT_1="yyyy-MM-dd hh:mm:ss";
+    public final static  String DATE_FORMAT_2="yyyy-MM-dd";
+    public final static  String DATE_FORMAT_3="yyyy年M月d日";
 
 
 }
