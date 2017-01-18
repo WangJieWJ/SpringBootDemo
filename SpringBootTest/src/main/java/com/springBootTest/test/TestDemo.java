@@ -188,9 +188,7 @@ public class TestDemo {
 
 
             System.out.println("当前正在dev分支，测试冲突！！！");
-            System.out.println("当前正在dev分支，测试冲突！！！");
-
-
+            System.out.println("Hello Merge 冲突");
             System.out.println();
 
         }catch (Exception e){
