@@ -143,7 +143,6 @@ public class TestDemo {
         System.out.println(DeStr);
 
         System.out.println("------------------------------------------------------------------------------------");
-        String Demo=" 涓???涔辩??娴??ì";
 
         try {
 
@@ -186,6 +185,13 @@ public class TestDemo {
             System.out.println("使用UTF-8编码结果：" + _Str);
             String _Str2=URLDecoder.decode(_Str1,"UTF-8");
             System.out.println("使用UTF-8解码结果：" + _Str2);
+
+
+            System.out.println("当前正在dev分支，测试冲突！！！");
+            System.out.println("当前正在dev分支，测试冲突！！！");
+
+
+            System.out.println();
 
         }catch (Exception e){
 
