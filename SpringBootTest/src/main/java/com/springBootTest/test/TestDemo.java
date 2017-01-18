@@ -147,8 +147,6 @@ public class TestDemo {
 
         try {
 
-            System.out.println("测试冲突！！！");
-
             String HTML="%E6%B5%8B%E8%AF%95%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81";
             System.out.println(URLDecoder.decode(HTML,"UTF-8"));
             System.out.println(URLDecoder.decode(HTML,"GB2312"));
@@ -157,6 +155,8 @@ public class TestDemo {
             System.out.println("默认编码方式："+Charset.defaultCharset());
             String HTML11="中文乱码测试";
             System.out.println(new String(HTMLT.getBytes(),Charset.forName("gb2312")));
+
+            System.out.println("现在正在test分支测试冲突");
 
             //将文字从utf-8转换为gb2312
             System.out.println("将文字从utf-8转换为gb2312");
@@ -186,10 +186,6 @@ public class TestDemo {
             System.out.println("使用UTF-8编码结果：" + _Str);
             String _Str2=URLDecoder.decode(_Str1,"UTF-8");
             System.out.println("使用UTF-8解码结果：" + _Str2);
-
-
-
-            System.out.println();
 
         }catch (Exception e){
 
