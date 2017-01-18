@@ -192,6 +192,27 @@ public class TestDemo {
             System.out.println("Hello World Demo ");
             System.out.println();
 
+
+
+            String resultHtml="&lt;script%E2%80%82type=&#ssss;text/javascript&#ssss;&gt;%0A%09document.write(&#dddd;&lt;a%E2%80%82style=&#ssss;display:none!important;width:%E2%80%82300px;height:%E2%80%82400px&#ssss;%E2%80%82id=&#ssss;axdt-a-i_3_3&#ssss;&gt;&lt;/a&gt;&#dddd;);%0A%E2%80%82%E2%80%82%E2%80%82%E2%80%82s%E2%80%82=%E2%80%82document.createElement(&#ssss;script&#ssss;);%0A%E2%80%82%E2%80%82%E2%80%82%E2%80%82s.type%E2%80%82=%E2%80%82&#ssss;text/javascript&#ssss;;%0A%E2%80%82%E2%80%82%E2%80%82%E2%80%82s.charset%E2%80%82=%E2%80%82&#ssss;utf-8&#ssss;;%0A%E2%80%82%E2%80%82%E2%80%82%E2%80%82s.id%E2%80%82=%E2%80%82&#ssss;axdt-s-i_3_3&#ssss;;%0A%E2%80%82%E2%80%82%E2%80%82%E2%80%82s.async%E2%80%82=%E2%80%82!0;%0A%E2%80%82%E2%80%82%E2%80%82%E2%80%82s.src%E2%80%82=%E2%80%82&#ssss;http://marketing.haier.com/ads/open/eval?i=i_3_3&#ssss;;%0A%E2%80%82%E2%80%82%E2%80%82%E2%80%82h%E2%80%82=%E2%80%82document.getElementsByTagName(&#ssss;head&#ssss;)%5B0%5D;%0A%E2%80%82%E2%80%82%E2%80%82%E2%80%82if(h)h.insertBefore(s,h.firstChild);%0A&lt;/script&gt;%0A&lt;!--%E5%BD%93%E6%97%A0%E5%B9%BF%E5%91%8A%E6%8A%95%E6%94%BE%E6%97%B6%EF%BC%8C%E5%B0%86%E9%BB%98%E8%AE%A4%E6%98%BE%E7%A4%BA%E6%AD%A4div%E5%86%85%E5%AE%B9--&gt;%0A&lt;div%E2%80%82id=&#ssss;axdt-d-i_3_3&#ssss;%E2%80%82style=&#ssss;height:400px;width:300px;display:none;&#ssss;&gt;%0A&lt;/div&gt;%0A";
+
+            System.out.println(resultHtml.contains("%E2%80%82"));
+            resultHtml=resultHtml.replaceAll("%E2%80%82"," ");
+            System.out.println("替换之后的"+resultHtml);
+            resultHtml = URLDecoder.decode(resultHtml,"UTF-8");
+            resultHtml = resultHtml.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&#ssss;", "\"").replaceAll("&#dddd;", "'").replaceAll("&amp;", "&").replaceAll("&ensp;", " ").replaceAll("&emsp;", "　");
+            //转换编码
+            System.out.println(resultHtml);
+
+            System.out.println("-------------------------------------------");
+            System.out.println("解码"+URLDecoder.decode("%E2%80%82","utf-8")+"完成");
+            System.out.println(" ".equals(URLDecoder.decode("%E2%80%82","utf-8")));
+            System.out.println(" ".equals(" "));
+            System.out.println(" ".equals(" "));
+            System.out.println(" ".equals(URLDecoder.decode("%E2%80%82","utf-8")));
+            System.out.println("".equals(URLDecoder.decode("%E2%80%82","utf-8")));
+
+
         } catch (Exception e) {
 
         }
