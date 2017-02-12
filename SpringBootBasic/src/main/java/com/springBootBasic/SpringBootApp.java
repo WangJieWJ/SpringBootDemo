@@ -3,13 +3,9 @@ package com.springBootBasic;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 /**
  * Title: SpringBoot启动类
@@ -19,8 +15,11 @@ import java.io.ObjectOutputStream;
  * Create User: wangjie
  * Create Time: 2017/1/9 0009.
  */
+@EnableAspectJAutoProxy
+@EnableTransactionManagement
 @SpringBootApplication
 public class SpringBootApp {
+
 
     public static void main(String[] args) {
 //        SpringApplication.run(SpringBootApp.class,args);
@@ -29,18 +28,4 @@ public class SpringBootApp {
         app.run(args);
     }
 
-    //对象的深拷贝
-    public Object deepClone() throws Exception {
-        // 序列化
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(bos);
-
-        oos.writeObject(this);
-
-        // 反序列化
-        ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-        ObjectInputStream ois = new ObjectInputStream(bis);
-
-        return ois.readObject();
-    }
 }
