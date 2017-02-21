@@ -7,6 +7,7 @@ import com.springBootBasic.redisCache.RedisUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class TestService {
      * @param xh
      * @return
      */
+//    @Transactional
     public Student getStudentByXH(String xh) {
 
         /**

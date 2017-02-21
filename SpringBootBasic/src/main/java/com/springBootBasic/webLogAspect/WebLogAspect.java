@@ -77,6 +77,9 @@ public class WebLogAspect {
         //获取所有参数方法
         Enumeration<String> enumeration = request.getParameterNames();
         System.out.println("params:");
+        if (!enumeration.hasMoreElements()){
+            System.out.println("       NoParams");
+        }
         while (enumeration.hasMoreElements()) {
             String paraName = (String) enumeration.nextElement();
             System.out.println("       " + paraName + ": " + request.getParameter(paraName));

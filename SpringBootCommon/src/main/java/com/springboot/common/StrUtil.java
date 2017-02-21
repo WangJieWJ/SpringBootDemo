@@ -1,5 +1,9 @@
 package com.springboot.common;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+
 /**
  * Title: 字符串工具类
  * Description: 常用的字符串操作
@@ -48,6 +52,18 @@ public class StrUtil {
         return Str == null || "".equals(Str);
     }
 
+    public static final String inputStream2String(InputStream in, String encode)
+            throws UnsupportedEncodingException, IOException {
+        if (in == null)
+            return "";
+
+        StringBuffer out = new StringBuffer();
+        byte[] b = new byte[4096];
+        for (int n; (n = in.read(b)) != -1;) {
+            out.append(new String(b, 0, n, encode));
+        }
+        return out.toString();
+    }
 
     public static void main(String[] args) {
         System.out.println(toSafeString(null).equals(""));

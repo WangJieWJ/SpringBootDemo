@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello SpringBoot</title>
+    <script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        function doUpload() {
+            var file = $("#fileAjax");
+            alert(file);
+            //初始化文档上传
+            $.ajax({
+                url: '/SpringBoot/fileUpload',
+                type: 'POST',
+                data: file,
+                async: false,
+                success: function (returndata) {
+                    alert(returndata);
+                },
+                error: function (returndata) {
+                    alert(returndata);
+                }
+            });
+        }
+
+
+        //锚点定位的多种方式：
+        //第一种：
+
+        function srollIntoView(id) {
+            document.getElementById(id).scrollIntoView(); //锚点定位
+        }
+
+    </script>
+</head>
+<body>
+
+<p>1、使用form表单的格式：</p>
+<form method="post" enctype="multipart/form-data" action="/SpringBoot/fileUpload">
+    <h1>测试通过form表单上传文件 </h1>
+    <p>文件：<input type="file" name="file"/></p>
+    <p><input type="submit" value="上传"/></p>
+</form>
+
+<p>2、使用ajax的格式：</p>
+<form>
+    <h1>测试通过AJAX上传文件 </h1>
+    <p>上传文件： <input id="fileAjax" type="file" name="file"/></p>
+    <input type="button" value="上传" onclick="doUpload()"/>
+</form>
+
+<p>锚点定位方式一</p>
+<p>缺点：地址栏会发生变化</p>
+<h2>
+    <a href="#div1">to Div1</a>
+    <a href="#div2">to Div2</a>
+    <a href="#div3">to Div3</a>
+</h2>
+
+<p>锚点定位方式二</p>
+<p>使用JS的srollIntoView方法来进行跳转，地址栏不会发生变化</p>
+<h2>
+        <button onclick="srollIntoView('div1')">to Div1</button>
+        <button onclick="srollIntoView('div2')">to Div2</button>
+        <button onclick="srollIntoView('div3')">to Div3</button>
+</h2>
+
+
+<div id="div1">
+    Div1
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</div>
+<div id="div2">
+    Div2
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+</div>
+<div id="div3">
+    Div3
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+</div>
+</body>
+</html>

@@ -4,6 +4,7 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
@@ -15,8 +16,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * Create User: wangjie
  * Create Time: 2017/1/9 0009.
  */
-@EnableAspectJAutoProxy
-@EnableTransactionManagement
+@EnableAspectJAutoProxy        //开启AOP
+@EnableTransactionManagement   //开启事务管理
 @SpringBootApplication
 public class SpringBootApp {
 

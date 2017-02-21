@@ -7,6 +7,7 @@ import com.springBootBasic.pojo.Student;
 import com.springBootBasic.rabbitmqMessage.RabbitMQ_Send;
 import com.springBootBasic.redisCache.RedisUtil;
 import com.springBootBasic.service.TestService;
+import com.springboot.common.StrUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -16,6 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.util.*;
 
 /**
  * Title: 测试Controller
@@ -67,9 +77,9 @@ public class TestController {
     //规定参数Username为必传参数(RequestParam)，id和age为可选
     @ApiOperation(value = "测试参数必传@RequestParam")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "Username",value = "用户名",required = true,dataType = "String",paramType = "query"),
-            @ApiImplicitParam(name = "id",value = "用户ID",dataType = "Long",paramType = "query"),
-            @ApiImplicitParam(name = "age",value = "用户年龄",dataType = "Integer",paramType = "query")
+            @ApiImplicitParam(name = "Username", value = "用户名", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "id", value = "用户ID", dataType = "Long", paramType = "query"),
+            @ApiImplicitParam(name = "age", value = "用户年龄", dataType = "Integer", paramType = "query")
     })
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPost(@RequestParam String Username, Long id, Integer age) {
@@ -109,9 +119,173 @@ public class TestController {
     }
 
     @ApiOperation(value = "使用RabbitMQ发送消息")
-    @ApiImplicitParam(name = "msg",value = "消息内容",required = true,dataType = "String",paramType = "query")
-    @RequestMapping(value = "/rabbitMQ",method = RequestMethod.POST)
-    public void sendRabbitMQ(@RequestParam String msg){
-        rabbitMQ_send.sendMessage(RabbitMQConfig.ROUTINGKEY1,msg,RabbitMQConstant.APP2, RabbitMQConstant.APP3);
+    @ApiImplicitParam(name = "msg", value = "消息内容", required = true, dataType = "String", paramType = "query")
+    @RequestMapping(value = "/rabbitMQ", method = RequestMethod.POST)
+    public void sendRabbitMQ(@RequestParam String msg) {
+        rabbitMQ_send.sendMessage(RabbitMQConfig.ROUTINGKEY1, msg, RabbitMQConstant.APP2, RabbitMQConstant.APP3);
     }
+
+    @ApiOperation(value = "在SpringBoot中获取Req和Res")
+    @RequestMapping(value = "/getReqRes", method = RequestMethod.POST)
+    public String getReq_Res() {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("relativePath: " + request.getSession().getServletContext().getRealPath("/"));
+        stringBuilder.append("contextPath: " + request.getSession().getServletContext().getContextPath());
+        stringBuilder.append("serverInfo: " + request.getSession().getServletContext().getServerInfo());
+        stringBuilder.append("<img src='/static/favicon.ico'/>");
+        return stringBuilder.toString();
+    }
+
+    @ApiOperation(value = "文件上传")
+    @ApiImplicitParam(name = "file", value = "上传的文件", required = true, dataType = "file", allowMultiple = true)
+    @RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
+    public String uploadFile(@RequestParam MultipartFile file) {
+
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
+        try {
+            ServletInputStream in = request.getInputStream();
+            String Str = StrUtil.inputStream2String(in, "UTF-8");
+            System.out.println("InputStream: " + Str);
+
+            //检查文件大小、文件上传类型
+            //对于文件的保存以及下载问题的总结
+            //要使用文件系统进行操作，使用绝对路径
+
+//            response.sendRedirect("/SpringBoot/static/html/index.html");
+        } catch (IOException e) {
+            try {
+                response.getWriter().print("文件上传出错，请稍后重试！");
+            } catch (IOException io) {
+            }
+        }
+        return file.getOriginalFilename();
+    }
+
+    @ApiOperation(value = "测试HTTP请求")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query"),
+            @ApiImplicitParam(name = "passWord", value = "密码", required = true, dataType = "String", paramType = "query")
+    })
+    @RequestMapping(value = "/http", method = RequestMethod.GET)
+    public String testHttp(@RequestParam String userName, @RequestParam String passWord) {
+
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        try {
+            ServletInputStream inputStream = request.getInputStream();
+            String Str = StrUtil.inputStream2String(inputStream, "UTF-8");
+
+            logger.info("InputStream: " + Str);
+
+
+        } catch (IOException e) {
+        }
+        return "";
+    }
+
+    @ApiOperation(value = "测试文件传输")
+    @RequestMapping(value = "/testFile", method = RequestMethod.GET)
+    public void testFile() {
+        File file0 = new File("G:/成绩单.png");
+        File file1 = new File("G:/test.txt");
+        File file2 = new File("G:/成绩单.png");
+        File file3 = new File("G:/test.txt");
+
+        List<File> files = new ArrayList<File>();
+        files.add(file0);
+        files.add(file1);
+        files.add(file2);
+        files.add(file3);
+
+        try {
+            files = (List<File>) deepClone(files);
+        } catch (Exception e) {
+            System.out.println("对象的深拷贝出现问题！");
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("file", files);
+
+        List<File> lists = (List<File>) map.get("file");
+        try {
+            for (File file : lists) {
+                InputStream in = null;
+                byte[] tempbytes = new byte[100];
+                int byteread = 0;
+                in = new FileInputStream(file);
+                System.out.println("当前字节输入流中的字节数为:" + in.available());
+                // 读入多个字节到字节数组中，byteread为一次读入的字节数
+                while ((byteread = in.read(tempbytes)) != -1) {
+                    System.out.write(tempbytes, 0, byteread);
+                }
+                System.out.println("---------------------------------");
+            }
+        } catch (IOException e) {
+            System.out.println("出错");
+        }
+
+    }
+
+    @ApiOperation(value = "测试请求的并发性")
+    @ApiImplicitParam(name = "WxId", value = "微信ID", required = true, dataType = "String", paramType = "query")
+    @RequestMapping(value = "/test1", method = RequestMethod.GET)
+    public void test1(@RequestParam String WxId) {
+        String Str = WxId + "---" + UUID.randomUUID().toString();
+        System.out.println(Str);
+        try {
+            Thread.sleep(1000L);
+        } catch (InterruptedException e) {
+            System.out.println("------------" + Str);
+        }
+        System.out.println("------------" + Str);
+    }
+
+    /**
+     * 对象的深拷贝
+     *
+     * @return
+     * @throws Exception
+     */
+    public static Object deepClone(Object object) throws Exception {
+        // 序列化
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(bos);
+
+        oos.writeObject(object);
+
+        // 反序列化
+        ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+        ObjectInputStream ois = new ObjectInputStream(bis);
+
+        return ois.readObject();
+    }
+
+    public static void main(String[] args) {
+
+        String sresult = "http://www.haier.com/cn/consumer/cooling/dkmbx/201505/t20150519_269277.jpg";
+//        http://test.haier.com/cn/xbsy_37860/interact_datas/201508/P020150818541296969073.jpg
+        String[] extNames = new String[]{"jpg", "jpeg", "png", "gif"};
+        //扩展名
+        String extName = sresult.substring(sresult.lastIndexOf(".") + 1, sresult.length()).toLowerCase();
+        if (sresult.startsWith("http://www.haier.com") && Arrays.asList(extNames).indexOf(extName) != -1) {
+            sresult = sresult.replaceFirst("http://www.haier.com", "http://image.haier.com");
+        }
+        System.out.println(sresult);
+
+
+        try {
+            for (int i = 0; i < 20; i++) {
+                System.out.println("index: " + i);
+                if (i == 10) {
+                    throw new IOException();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("baocuo ");
+        }
+        System.out.println("        }\n");
+    }
+
+
 }
