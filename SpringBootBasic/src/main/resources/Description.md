@@ -1,7 +1,7 @@
 # 使用JDBCTemplate查询返回自定义对象集合
 
 ## 1、在Student.java中添加一个Map转换为Student的方法
-```java
+```
 //实体类
     public static List toObject(List<Map> list){
         List students=new ArrayList();
@@ -38,7 +38,7 @@
 ```
 
 ## 2、使用JDBCTemplate.query(SQL,RowMapper)方式实现
-```java
+```
 //dao层实现
    List<Student> list=jdbcTemplate.query(SQL, new RowMapper<Student>() {
             @Override
@@ -60,7 +60,7 @@
 ```
 
 ## 3、使用RoeMapper实现接口方式,覆盖mapRow方法：
-```java
+```
 //实体类
 public class Student implements RowMapper, Serializable{
     @Override
@@ -91,7 +91,14 @@ public List findAll() {
 ```
 
 ## 4、dao层使用
-```java
+```
    jdbcTemplate.query("SQL",new BeanPropertyRowMapper<Student>());
 //spring 提供框架的同时还提供了一种规范，包括命名规范，自动转换就会要求你javabean的成员变量命名符合规
+```
+
+# Quart学习
+```
+JobDetail:真正的任务内容，任务本身是集成Job接口，但是真正的任务是JobBuilder通过反射的方式实例化的
+Trigger:触发器，定义任务应当开始的时间，主要分为两类SimpleTrigger,CronTrigger，SimpleTrigger就是简单触发器，CronTrigger主要用于处理quartz表达式定义的任务，比如每个月20号，每个星期一之类的。
+Scheduler:计划表,现在我们有了要做的内容，有了要做的时间，接下来，就把这两个内容填充到计划任务Scheduler对象里面，到了时间它就可以自动运行了。
 ```

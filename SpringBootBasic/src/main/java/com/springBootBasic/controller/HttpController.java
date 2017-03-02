@@ -3,13 +3,8 @@ package com.springBootBasic.controller;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,8 +22,10 @@ public class HttpController {
     /**
      * 文件上传
      */
+    @ApiOperation(value = "asdad")
+    @RequestMapping(value = "/demo",method = RequestMethod.POST)
     public void post_JSON(){
-        HttpPost post=new HttpPost("");
+//        HttpPost post=new HttpPost("");
 
 //        JSONObject response=null;
 //        JSONObject params=new JSONObject();
@@ -51,5 +48,14 @@ public class HttpController {
 
     }
 
+    public static void main(String[] args) {
+        String Str="http://test.haier.com/wechat/gh_d75afe1c0b21/wyy/201611/P020161108565326786139.jpg";
+        int start=Str.lastIndexOf("/");
+        System.out.println(Str.substring(start+1));
+
+
+        String UUID= java.util.UUID.randomUUID().toString();
+        System.out.println(UUID);
+    }
 
 }

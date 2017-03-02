@@ -9,3 +9,10 @@
 
 压力测试软件的安装路径：
 D:\TRS\Apache_JMeter\apache-jmeter-3.1\apache-jmeter-3.1\bin
+
+
+1、文档说明：
+
+配置RabbittMQ
+
+配置Redis
