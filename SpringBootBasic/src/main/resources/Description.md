@@ -101,4 +101,6 @@ public List findAll() {
 JobDetail:真正的任务内容，任务本身是集成Job接口，但是真正的任务是JobBuilder通过反射的方式实例化的
 Trigger:触发器，定义任务应当开始的时间，主要分为两类SimpleTrigger,CronTrigger，SimpleTrigger就是简单触发器，CronTrigger主要用于处理quartz表达式定义的任务，比如每个月20号，每个星期一之类的。
 Scheduler:计划表,现在我们有了要做的内容，有了要做的时间，接下来，就把这两个内容填充到计划任务Scheduler对象里面，到了时间它就可以自动运行了。
+
+可以在Job中添加一写
 ```

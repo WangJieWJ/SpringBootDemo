@@ -37,10 +37,10 @@ public class QuartJobDao {
      */
     public List<JobInfo> getAllQuartJob() {
         return jdbcTemplate.query("SELECT * FROM job_info WHERE status = '1'", new RowMapper<JobInfo>() {
-            JobInfo quartJob = new JobInfo();
 
             @Override
             public JobInfo mapRow(ResultSet resultSet, int i) throws SQLException {
+                JobInfo quartJob = new JobInfo();
                 quartJob.setId(resultSet.getInt("id"));
                 quartJob.setAppName(resultSet.getString("appName"));
                 quartJob.setName(resultSet.getString("name"));
