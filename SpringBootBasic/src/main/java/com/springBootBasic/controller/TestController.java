@@ -41,14 +41,8 @@ import java.util.*;
 @RestController
 public class TestController {
 
-    @Autowired
-    private RedisUtil redisUtil;
 
-    @Autowired
-    private TestService testService;
 
-    @Autowired
-    private RabbitMQ_Send rabbitMQ_send;
 
     private Logger logger = Logger.getLogger(TestController.class);
 
@@ -87,43 +81,9 @@ public class TestController {
     }
 
 
-    /**
-     * 测试Redis缓存
-     *
-     * @return
-     */
-    @ApiOperation(value = "测试Redis服务器的缓存")
-    @RequestMapping(value = "/redis", method = RequestMethod.POST)
-    public String getSessionId() {
-        System.out.println(redisUtil.exists("HelloWorld2017"));
-        redisUtil.set_Str("HelloWorld2017", "Java");
-        System.out.println(redisUtil.get_Str("HelloWorld2017"));
-        return "SUCCESS";
-    }
 
-    /**
-     * 测试MySQL数据库连接
-     * <p>
-     * 并使用redis缓存。
-     */
-    @ApiOperation(value = "一个简易的数据缓存系统")
-    @ApiImplicitParam(name = "xh", value = "学生学号", required = true, dataType = "String", paramType = "query")
-    @RequestMapping(value = "/mysql", method = RequestMethod.POST)
-    public String getSQLData(@RequestParam String xh) {
-        //获取当前时间
-        long stratTime = System.currentTimeMillis();
-        Student student = testService.getStudentByXH(xh);
-        long endTime = System.currentTimeMillis();
-        logger.info("程序的运行时间：" + (endTime - stratTime) + "ms");
-        return student == null ? "查询的数据为空" : student.toString();
-    }
 
-    @ApiOperation(value = "使用RabbitMQ发送消息")
-    @ApiImplicitParam(name = "msg", value = "消息内容", required = true, dataType = "String", paramType = "query")
-    @RequestMapping(value = "/rabbitMQ", method = RequestMethod.POST)
-    public void sendRabbitMQ(@RequestParam String msg) {
-        rabbitMQ_send.sendMessage(RabbitMQConfig.ROUTINGKEY1, msg, RabbitMQConstant.APP2, RabbitMQConstant.APP3);
-    }
+
 
     @ApiOperation(value = "在SpringBoot中获取Req和Res")
     @RequestMapping(value = "/getReqRes", method = RequestMethod.POST)
