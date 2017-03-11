@@ -1,10 +1,9 @@
-package com.springBootBasic.dao;
+package com.springBootBasic.dao.quartz;
 
-import com.springBootBasic.pojo.base.JobInfo;
+import com.springBootBasic.pojo.quartz.JobInfo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.CallableStatementCreator;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -15,7 +14,7 @@ import java.util.List;
 
 /**
  * Title:
- * Description:
+ * Description: 定时任务的操作实体类   使用JDBCTemplate
  * <p>
  * Project: SpringBoot
  * Create User: 王杰

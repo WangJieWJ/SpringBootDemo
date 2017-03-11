@@ -1,7 +1,7 @@
 package com.springBootBasic.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.springBootBasic.pojo.base.JobInfo;
+import com.springBootBasic.pojo.quartz.JobInfo;
 import com.springBootBasic.service.QuartJobService;
 import com.springboot.common.DateUtil;
 import io.swagger.annotations.Api;

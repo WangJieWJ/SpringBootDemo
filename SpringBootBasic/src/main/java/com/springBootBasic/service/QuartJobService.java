@@ -1,7 +1,7 @@
 package com.springBootBasic.service;
 
-import com.springBootBasic.dao.QuartJobDao;
-import com.springBootBasic.pojo.base.JobInfo;
+import com.springBootBasic.dao.quartz.QuartJobDao;
+import com.springBootBasic.pojo.quartz.JobInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

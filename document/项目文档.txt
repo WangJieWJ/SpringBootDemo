@@ -6,6 +6,9 @@
 5、将MySQL和Redis中缓存的使用中，存储value以及key的时候，都可以使用序列化工具进行序列化之后，再进行存储，更方便快捷           //
 6、多数据源(MySQL数据库)的问题                                                                                 //
 
+7、数据持久化   springData JPA
+8、MySQL数据库的主从
+
 
 压力测试软件的安装路径：
 D:\TRS\Apache_JMeter\apache-jmeter-3.1\apache-jmeter-3.1\bin

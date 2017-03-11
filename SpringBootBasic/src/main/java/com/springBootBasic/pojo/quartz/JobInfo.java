@@ -1,7 +1,6 @@
-package com.springBootBasic.pojo.base;
+package com.springBootBasic.pojo.quartz;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Title:

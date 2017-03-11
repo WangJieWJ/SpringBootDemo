@@ -1,8 +1,6 @@
 package com.springBootBasic.myRunner;
 
-import com.springBootBasic.dao.TestDao;
-import com.springBootBasic.pojo.base.JobInfo;
-import com.springBootBasic.quartJob.TestJob;
+import com.springBootBasic.pojo.quartz.JobInfo;
 import com.springBootBasic.quartJob.base.MyQuartJob;
 import com.springBootBasic.service.QuartJobService;
 import org.apache.log4j.Logger;
@@ -19,14 +17,14 @@ import java.util.Map;
 
 /**
  * Title:
- * Description:
+ * Description:  项目启动的时候加载所有的定时任务
  * <p>
  * Project: SpringBoot
  * Create User: 王杰
  * Create Time: 2017/2/28
  */
 @Component
-@Order(value = 2)
+@Order(value = 1)
 public class MyStartupRunner1 implements CommandLineRunner {
 
     private Logger logger = Logger.getLogger(MyStartupRunner1.class);

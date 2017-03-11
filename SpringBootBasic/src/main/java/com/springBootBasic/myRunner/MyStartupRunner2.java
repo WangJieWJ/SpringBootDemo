@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
  * Create Time: 2017/2/28
  */
 @Component
-@Order(value = 3)
+@Order(value = 2)
 public class MyStartupRunner2 implements CommandLineRunner{
 
     private Logger logger=Logger.getLogger(MyStartupRunner2.class);
