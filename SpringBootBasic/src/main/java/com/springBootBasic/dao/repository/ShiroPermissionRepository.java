@@ -13,4 +13,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ShiroPermissionRepository extends JpaRepository<ShiroPermission,Long>{
 
+    //TODO
+    //待实现的一些特殊查询
 }

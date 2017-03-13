@@ -22,4 +22,8 @@ public interface ShiroUserRepository extends JpaRepository<ShiroUser, Long>{
      */
     @Query(value = "SELECT * FROM shiro_user where username = ?1 and password = ?2",nativeQuery = true)
     ShiroUser getShiroUserByUserNameAndPassWord(String username,String password);
+
+
+    //TODO
+    //待实现的一些特殊查询
 }

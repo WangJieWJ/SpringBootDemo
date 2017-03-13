@@ -12,4 +12,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Create Time: 2017/3/10
  */
 public interface UserRepository extends JpaRepository<User, Long> {
+
+    //TODO
+    //待实现的一些特殊查询
 }

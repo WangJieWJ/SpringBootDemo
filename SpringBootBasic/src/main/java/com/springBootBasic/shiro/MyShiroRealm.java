@@ -38,6 +38,8 @@ public class MyShiroRealm extends AuthorizingRealm{
         logger.info("MyShiroRealm.doGetAuthorizationInfo()");
 
         System.out.println("正在进行授权操作");
+
+        //TODO
         //实际项目中，这里可以根据实际情况做缓存
 
         Set<String> roleNames=new HashSet<String>();
@@ -73,7 +75,8 @@ public class MyShiroRealm extends AuthorizingRealm{
         //通过username从数据库中查找 User对象，如果找到，没找到.
         //实际项目中，这里可以根据实际情况做缓存
 
-
+        //TODO
+        //待实现的一些
 
 
         //明文: 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验
