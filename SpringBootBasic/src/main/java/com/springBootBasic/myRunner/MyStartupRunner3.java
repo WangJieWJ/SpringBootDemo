@@ -7,6 +7,8 @@ import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.util.Factory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -28,13 +30,25 @@ public class MyStartupRunner3 implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        File file=new File("shiro.ini");
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
 
-        //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
-//        Factory<SecurityManager> factory=new IniSecurityManagerFactory("classpath:shiro.ini");
-//
-//        //2、得到SecurityManager实例 并绑定给SecurityUtils
-//        SecurityManager securityManager=factory.getInstance();
-//        SecurityUtils.setSecurityManager(securityManager);
+        Resource resource = new ClassPathResource("shiro.ini");
+        if (resource.exists()) {
+            logger.info("开始加载shiro配置文件");
+
+            //其实可以直接在此处配置MyRealm ，但此处选择从资源文件中读取配置
+            //1、获取SecurityManager工厂，此处使用Ini配置文件初始化SecurityManager
+            Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro.ini");
+
+            //2、得到SecurityManager实例 并绑定给SecurityUtils
+            SecurityManager securityManager = factory.getInstance();
+            SecurityUtils.setSecurityManager(securityManager);
+
+        } else {
+            logger.info("shiro配置文件不存在");
+        }
+
+
+        System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
     }
 }

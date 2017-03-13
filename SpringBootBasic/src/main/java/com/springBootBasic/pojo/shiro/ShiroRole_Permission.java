@@ -20,16 +20,16 @@ public class ShiroRole_Permission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "permissionId")
+    @Column(name = "permissionid")
     private int permissionId;
 
-    @Column(name = "roleId")
+    @Column(name = "roleid")
     private int roleId;
 
-    @Column(name = "crUserId")
-    private int crUserId;
+    @Column(name = "cruserid")
+    private Long crUserId;
 
-    @Column(name = "crTime")
+    @Column(name = "crtime")
     private Date crTime;
 
     public Long getId() {
@@ -56,11 +56,11 @@ public class ShiroRole_Permission {
         this.roleId = roleId;
     }
 
-    public int getCrUserId() {
+    public Long getCrUserId() {
         return crUserId;
     }
 
-    public void setCrUserId(int crUserId) {
+    public void setCrUserId(Long crUserId) {
         this.crUserId = crUserId;
     }
 

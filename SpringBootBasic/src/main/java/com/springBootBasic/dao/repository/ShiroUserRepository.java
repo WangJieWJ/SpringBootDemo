@@ -2,6 +2,7 @@ package com.springBootBasic.dao.repository;
 
 import com.springBootBasic.pojo.shiro.ShiroUser;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  * Title:
@@ -12,4 +13,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Create Time: 2017/3/10
  */
 public interface ShiroUserRepository extends JpaRepository<ShiroUser, Long>{
+
+    /**
+     * 通过用户名和密码来查询当前登录用户的信息
+     * @param username
+     * @param password
+     * @return
+     */
+    @Query(value = "SELECT * FROM shiro_user where username = ?1 and password = ?2",nativeQuery = true)
+    ShiroUser getShiroUserByUserNameAndPassWord(String username,String password);
 }

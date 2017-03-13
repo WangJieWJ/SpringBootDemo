@@ -34,13 +34,13 @@ public class ShiroPermission implements Serializable{
     private int delFlag;
 
     @Column(name = "upuserid")
-    private int upUserId;
+    private Long upUserId;
 
     @Column(name = "uptime")
     private Date upTime;
 
     @Column(name = "cruserid")
-    private int crUserId;
+    private Long crUserId;
 
     @Column(name = "crtime")
     private Date crTime;
@@ -48,7 +48,7 @@ public class ShiroPermission implements Serializable{
     public ShiroPermission() {
     }
 
-    public ShiroPermission(String name, String enName, String desc, int delFlag, int upUserId, Date upTime, int crUserId, Date crTime) {
+    public ShiroPermission(String name, String enName, String desc, int delFlag, Long upUserId, Date upTime, Long crUserId, Date crTime) {
         this.name = name;
         this.enName = enName;
         this.desc = desc;
@@ -99,11 +99,11 @@ public class ShiroPermission implements Serializable{
         this.delFlag = delFlag;
     }
 
-    public int getUpUserId() {
+    public Long getUpUserId() {
         return upUserId;
     }
 
-    public void setUpUserId(int upUserId) {
+    public void setUpUserId(Long upUserId) {
         this.upUserId = upUserId;
     }
 
@@ -115,11 +115,11 @@ public class ShiroPermission implements Serializable{
         this.upTime = upTime;
     }
 
-    public int getCrUserId() {
+    public Long getCrUserId() {
         return crUserId;
     }
 
-    public void setCrUserId(int crUserId) {
+    public void setCrUserId(Long crUserId) {
         this.crUserId = crUserId;
     }
 

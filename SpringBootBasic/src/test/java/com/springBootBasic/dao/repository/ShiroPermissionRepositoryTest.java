@@ -33,9 +33,10 @@ public class ShiroPermissionRepositoryTest {
     @Test
     public void testsave(){
         ShiroPermission shiroPermission=new ShiroPermission();
-        shiroPermission.setName("删除用户");
-        shiroPermission.setEnName("DeleteUser");
+        shiroPermission.setName("删除用户1");
+        shiroPermission.setEnName("DeleteUser1");
         shiroPermission.setDelFlag(0);
+        shiroPermission.setUpTime(new Date());
         shiroPermission.setDesc("管理员删除用户");
 
         ShiroPermission shiroPermission1=shiroPermissionRepository.save(shiroPermission);

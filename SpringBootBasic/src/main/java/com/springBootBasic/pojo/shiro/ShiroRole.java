@@ -23,22 +23,22 @@ public class ShiroRole {
     @Column(name = "`name`")
     private String name;
 
-    @Column(name = "enName", unique = true)
+    @Column(name = "enname", unique = true)
     private String enName;
 
     @Column(name = "remark")
     private String remark;
 
-    @Column(name = "upUserId")
-    private int upUserId;
+    @Column(name = "upuserid")
+    private Long upUserId;
 
-    @Column(name = "upTime")
+    @Column(name = "uptime")
     private Date upTime;
 
-    @Column(name = "crUserId")
-    private int crUserId;
+    @Column(name = "cruserid")
+    private Long crUserId;
 
-    @Column(name = "crTime")
+    @Column(name = "crtime")
     private Date crTime;
 
     public Long getId() {
@@ -73,11 +73,11 @@ public class ShiroRole {
         this.remark = remark;
     }
 
-    public int getUpUserId() {
+    public Long getUpUserId() {
         return upUserId;
     }
 
-    public void setUpUserId(int upUserId) {
+    public void setUpUserId(Long upUserId) {
         this.upUserId = upUserId;
     }
 
@@ -89,11 +89,11 @@ public class ShiroRole {
         this.upTime = upTime;
     }
 
-    public int getCrUserId() {
+    public Long getCrUserId() {
         return crUserId;
     }
 
-    public void setCrUserId(int crUserId) {
+    public void setCrUserId(Long crUserId) {
         this.crUserId = crUserId;
     }
 

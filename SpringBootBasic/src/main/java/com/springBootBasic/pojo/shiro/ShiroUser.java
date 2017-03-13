@@ -32,10 +32,10 @@ public class ShiroUser {
     @Column(name = "theme")
     private String theme;
 
-    @Column(name = "trueName")
+    @Column(name = "truename")
     private String trueName;
 
-    @Column(name = "enName")
+    @Column(name = "enname")
     private String enName;
 
     @Column(name = "email")
@@ -50,19 +50,19 @@ public class ShiroUser {
     @Column(name = "gender")
     private int gender;
 
-    @Column(name = "delFlag")
+    @Column(name = "delflag")
     private int delFlag;
 
-    @Column(name = "upUserId")
-    private int upUserId;
+    @Column(name = "upuserid")
+    private Long upUserId;
 
-    @Column(name = "upTime")
+    @Column(name = "uptime")
     private Date upTime;
 
-    @Column(name = "crUserId")
-    private int crUserId;
+    @Column(name = "cruserid")
+    private Long crUserId;
 
-    @Column(name = "crTime")
+    @Column(name = "crtime")
     private Date crTime;
 
     @Column(name = "pic")
@@ -167,11 +167,11 @@ public class ShiroUser {
         this.delFlag = delFlag;
     }
 
-    public int getUpUserId() {
+    public Long getUpUserId() {
         return upUserId;
     }
 
-    public void setUpUserId(int upUserId) {
+    public void setUpUserId(Long upUserId) {
         this.upUserId = upUserId;
     }
 
@@ -183,11 +183,11 @@ public class ShiroUser {
         this.upTime = upTime;
     }
 
-    public int getCrUserId() {
+    public Long getCrUserId() {
         return crUserId;
     }
 
-    public void setCrUserId(int crUserId) {
+    public void setCrUserId(Long crUserId) {
         this.crUserId = crUserId;
     }
 
@@ -213,5 +213,29 @@ public class ShiroUser {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "ShiroUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", theme='" + theme + '\'' +
+                ", trueName='" + trueName + '\'' +
+                ", enName='" + enName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", remarks='" + remarks + '\'' +
+                ", gender=" + gender +
+                ", delFlag=" + delFlag +
+                ", upUserId=" + upUserId +
+                ", upTime=" + upTime +
+                ", crUserId=" + crUserId +
+                ", crTime=" + crTime +
+                ", pic='" + pic + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

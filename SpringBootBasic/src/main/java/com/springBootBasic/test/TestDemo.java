@@ -6,6 +6,9 @@ import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Title:
@@ -45,6 +48,26 @@ public class TestDemo {
 //        // scheduler结束
 //        scheduler.shutdown(true);
 
+        test1();
+//        String SQL="asdasd11";
+//        System.out.println(SQL.substring(0,SQL.length()-1));
 
+    }
+
+    public static void test1(){
+        String contentCp="275817,275407,275638,275637,276791,276791,276791,275407,275407,275407,275407,275407,275407";
+        Set<String> set=new HashSet<String>();
+        String []array=contentCp.split(",");
+        int length=array.length;
+        System.out.println(length);
+        for(int i=0;i<length;i++){
+            set.add(array[i]);
+        }
+        set.remove(275407+"");
+        String SQL="";
+        for(String s:set){
+            SQL+=s+",";
+        }
+        System.out.println(SQL);
     }
 }

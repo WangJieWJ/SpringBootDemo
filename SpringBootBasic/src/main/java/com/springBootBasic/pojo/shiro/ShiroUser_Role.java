@@ -20,16 +20,16 @@ public class ShiroUser_Role {
     @GeneratedValue
     private Long id;
 
-    @Column(name = "userId")
-    private int userId;
+    @Column(name = "userid")
+    private Long userId;
 
-    @Column(name = "roleId")
+    @Column(name = "roleid")
     private int roleId;
 
-    @Column(name = "crUserId")
-    private int crUserId;
+    @Column(name = "cruserid")
+    private Long crUserId;
 
-    @Column(name = "crTime")
+    @Column(name = "crtime")
     private Date crTime;
 
     public Long getId() {
@@ -40,11 +40,11 @@ public class ShiroUser_Role {
         this.id = id;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -56,11 +56,11 @@ public class ShiroUser_Role {
         this.roleId = roleId;
     }
 
-    public int getCrUserId() {
+    public Long getCrUserId() {
         return crUserId;
     }
 
-    public void setCrUserId(int crUserId) {
+    public void setCrUserId(Long crUserId) {
         this.crUserId = crUserId;
     }
 

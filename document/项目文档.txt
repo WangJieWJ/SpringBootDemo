@@ -10,6 +10,9 @@
 8、MySQL数据库的主从
 
 
+9、添加审核流程  shiro中的权限管理
+
+
 压力测试软件的安装路径：
 D:\TRS\Apache_JMeter\apache-jmeter-3.1\apache-jmeter-3.1\bin
 
