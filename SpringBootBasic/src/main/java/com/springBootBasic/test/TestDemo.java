@@ -5,6 +5,8 @@ import com.springBootBasic.quartJob.TestJob;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -48,9 +50,11 @@ public class TestDemo {
 //        // scheduler结束
 //        scheduler.shutdown(true);
 
-        test1();
+//        test1();
 //        String SQL="asdasd11";
 //        System.out.println(SQL.substring(0,SQL.length()-1));
+
+        test2();
 
     }
 
@@ -69,5 +73,21 @@ public class TestDemo {
             SQL+=s+",";
         }
         System.out.println(SQL);
+    }
+
+    //执行本机的代码
+    public static void test2(){
+        try{
+            Process process=Runtime.getRuntime().exec("ping www.taobao.com");
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
+            String line = null;
+            StringBuilder sb = new StringBuilder();
+            while ((line = br.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            System.out.println(sb.toString());
+        }catch (Exception e){
+
+        }
     }
 }

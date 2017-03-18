@@ -22,3 +22,6 @@ D:\TRS\Apache_JMeter\apache-jmeter-3.1\apache-jmeter-3.1\bin
 配置RabbittMQ
 
 配置Redis
+
+
+如何在Java代码中，执行命令行代码
