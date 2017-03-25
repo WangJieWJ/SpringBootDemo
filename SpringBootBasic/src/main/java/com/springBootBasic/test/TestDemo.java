@@ -1,5 +1,7 @@
 package com.springBootBasic.test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.springBootBasic.pojo.Student;
 import com.springBootBasic.quartJob.TestJob;
 import org.quartz.*;
@@ -77,17 +79,6 @@ public class TestDemo {
 
     //执行本机的代码
     public static void test2(){
-        try{
-            Process process=Runtime.getRuntime().exec("ping www.taobao.com");
-            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
-            String line = null;
-            StringBuilder sb = new StringBuilder();
-            while ((line = br.readLine()) != null) {
-                sb.append(line + "\n");
-            }
-            System.out.println(sb.toString());
-        }catch (Exception e){
 
-        }
     }
 }

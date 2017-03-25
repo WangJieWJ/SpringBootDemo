@@ -1,5 +1,7 @@
 package com.springBootBasic.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.springBootBasic.config.RabbitMQConfig;
 import com.springBootBasic.constants.RabbitMQConstant;
 import com.springBootBasic.pojo.AuthorSettings;
@@ -25,6 +27,7 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -40,9 +43,6 @@ import java.util.*;
 @Api(value = "测试Controller", description = "主要提供测试的Controller")
 @RestController
 public class TestController {
-
-
-
 
     private Logger logger = Logger.getLogger(TestController.class);
 
@@ -66,6 +66,24 @@ public class TestController {
         return "使用类型安全的配置：author name is " + authorSettings.getName() + " and author age is " + authorSettings.getAge();
     }
 
+    @ApiOperation(value = "作为一个后台服务器")
+    @RequestMapping(value = "/getData", method = RequestMethod.GET)
+    public String getData() {
+        Random random = new Random();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("time", new SimpleDateFormat("hh:mm:ss").format(new Date()));
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < 5; i++) {
+            if (random.nextBoolean()) {
+                list.add(random.nextInt(100));
+            } else {
+                list.add(random.nextInt(100) * (-1));
+            }
+        }
+        jsonObject.put("dataarray", list);
+        return jsonObject.toString();
+    }
+
 
     //规定请求的方式只能是POST请求
     //规定参数Username为必传参数(RequestParam)，id和age为可选
@@ -79,10 +97,6 @@ public class TestController {
     public String loginPost(@RequestParam String Username, Long id, Integer age) {
         return Username + " POST方式登录成功！！！ id:" + id + " age" + age;
     }
-
-
-
-
 
 
     @ApiOperation(value = "在SpringBoot中获取Req和Res")

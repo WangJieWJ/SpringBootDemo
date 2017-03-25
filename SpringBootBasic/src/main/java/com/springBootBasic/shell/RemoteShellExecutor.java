@@ -10,6 +10,7 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -101,22 +102,19 @@ public class RemoteShellExecutor {
                 String regEx="(?:location +)([\\d/a-zA-Z.]+)";
                 Pattern pat=Pattern.compile(regEx);
                 Matcher mat=pat.matcher(outStr);
+                StringBuffer stringBuffer=new StringBuffer("   ");
                 while (mat.find()){
-                    System.out.println(mat.group(1));
+                    stringBuffer.append(mat.group(1)+"   ");
                 }
+
+                outStr=stringBuffer.toString();
 
 
                 System.out.println("--------------------------------");
                 System.out.println("开始将接收到的数据转换为可识别的文件夹名称");
-                //首先以\n进行分割，在对空格进行分割。
-                //
-//                String[] Str=outStr.split("\\n");
-//                for(int i=0;i<Str.length;i++){
-//                    String[] fileName=Str[i].split(" ");
-//                    System.out.println("文件夹的名字为："+fileName[fileName.length-1]);
-//                }
 
                 System.out.println("结束将接收到的数据转换为可识别的文件夹名称");
+                System.out.println(outStr);
                 System.out.println("outErr=" + outErr);
                 ret = session.getExitStatus();
             } else {
@@ -148,6 +146,5 @@ public class RemoteShellExecutor {
     public static void main(String[] args) throws IOException {
         RemoteShellExecutor remoteShellExecutor=new RemoteShellExecutor("10.159.191.107","haieradmin","qITH2*%C,6lFE7d");
         System.out.println(remoteShellExecutor.exec("/data/TRS/HtmToExcel/tmp/test.sh"));
-
     }
 }
