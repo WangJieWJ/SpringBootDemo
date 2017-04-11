@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.springBootBasic.pojo.Student;
 import com.springBootBasic.quartJob.TestJob;
+import com.springboot.common.StrUtil;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
@@ -79,6 +80,24 @@ public class TestDemo {
 
     //执行本机的代码
     public static void test2(){
+        StringBuilder stringBuilder = new StringBuilder("SELECT " +
+                " storeinfo.shopName, " +
+                " storeinfo.shopAddress, " +
+                " storeinfo.mktid, " +
+                " store_shop_card_detail.activityId, " +
+                " store_shop_card_detail.theme, " +
+                " store_shop_card_detail.activityDetail, " +
+                " store_shop_card_detail.invsortsName, " +
+                " store_shop_card_detail.startTime, " +
+                " store_shop_card_detail.endTime, " +
+                " store_shop_card_detail.manPar, " +
+                " store_shop_card_detail.jianPar, " +
+                "  store_shop_card_detail.customerName " +
+                "FROM " +
+                " store_shop_card_detail, " +
+                " storeinfo " +
+                "WHERE ");
+        System.out.println(stringBuilder.toString());
 
     }
 }

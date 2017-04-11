@@ -6,6 +6,7 @@ import com.springBootBasic.config.RabbitMQConfig;
 import com.springBootBasic.constants.RabbitMQConstant;
 import com.springBootBasic.pojo.AuthorSettings;
 import com.springBootBasic.pojo.Student;
+import com.springBootBasic.pojo.User;
 import com.springBootBasic.rabbitmqMessage.RabbitMQ_Send;
 import com.springBootBasic.redisCache.RedisUtil;
 import com.springBootBasic.service.TestService;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
@@ -213,6 +215,21 @@ public class TestController {
             System.out.println("------------" + Str);
         }
         System.out.println("------------" + Str);
+    }
+
+    @ApiOperation(value = "测试返回一个对象")
+    @RequestMapping(value = "/getUser",method = RequestMethod.GET)
+    public User getUser(){
+        HttpServletRequest request=((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpServletResponse response=((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
+        response.setHeader("Access-Control-Allow-Origin","*");
+        response.setHeader("Access-Control-Allow-Methods","GET,POST");
+
+        User user=new User();
+        user.setName("WangJie");
+        user.setId(1306010203L);
+        user.setPassWord(123);
+        return user;
     }
 
     /**

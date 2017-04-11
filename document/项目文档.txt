@@ -10,8 +10,10 @@
 8、MySQL数据库的主从
 
 
+
 9、添加审核流程  shiro中的权限管理
 
+10、单点登录
 
 压力测试软件的安装路径：
 D:\TRS\Apache_JMeter\apache-jmeter-3.1\apache-jmeter-3.1\bin
@@ -24,4 +26,20 @@ D:\TRS\Apache_JMeter\apache-jmeter-3.1\apache-jmeter-3.1\bin
 配置Redis
 
 
-如何在Java代码中，执行命令行代码
+如何在Java代码中，执行命令行代码  SSL 链接远程的Shell脚本
+
+下载Docker 运行其中的容器。
+
+了解Google Guava工具包的使用
+
+JPA 与 REST风格的API的搭配使用
+
+
+快捷键：
+代码自动补全：Ctrl + Shift + Space
+将选中的代码使用if、catch等语句包裹：Ctrl + Shirt + c
+显示注释文档(可以查看源码的文档)：Ctrl  +  Q
+可以显示最近编辑的文件列表：Ctrl + E
+
+
+
