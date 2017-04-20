@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试页面2</title>
+    <script src="../../js/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+
+            $("#ajaxAccess").click(function () {
+                $.ajax({
+                    url: "http://test.wangjie.com:9090/SpringBoot/getCookie",
+                    type: 'POST',
+                    beforeSend: function(xhr) {
+                        xhr.withCredentials = true;
+                    },
+                    crossDomain:true,
+                    dataType:'json',
+                    async: true, //代表是允许进行异步请求，如果设置为false，Ajax请求将整个浏览器锁死，无法进行其他操作
+                    success: function (data) {
+                        alert(data);
+                    }
+                })
+            });
+
+//            $("#addCookie").click(function () {
+//                var key = $("#cookie_Key").val();
+//                var value = $("#cookie_Value").val();
+//                if (key !== "" && value !== "") {
+//                    document.cookie = key + "=" + value;
+//                }
+//            })
+        })
+    </script>
+</head>
+<body>
+
+<!--Cookie的键：<input id="cookie_Key" type="text"/><br/>-->
+<!--Cookie的值：<input id="cookie_Value" type="text"/><br/>-->
+
+<!--<input id="addCookie" type="button" value="添加Cookie"/>-->
+
+<input id="ajaxAccess" type="button" value="请求后台"/>
+
+
+</body>
+</html>

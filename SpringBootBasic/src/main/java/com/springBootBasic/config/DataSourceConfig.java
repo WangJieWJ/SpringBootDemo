@@ -25,14 +25,14 @@ public class DataSourceConfig {
     @Qualifier("masterDataSource")
     @Primary
     @ConfigurationProperties(prefix = "spring.datasource.master")
-    public DataSource masterDataSource(){
+    public DataSource masterDataSource() {
         return DataSourceBuilder.create().build();
     }
 
     @Bean(name = "slaveDataSource")
     @Qualifier("slaveDataSource")
     @ConfigurationProperties(prefix = "spring.datasource.slave")
-    public DataSource slaveDataSource(){
+    public DataSource slaveDataSource() {
         return DataSourceBuilder.create().build();
     }
 
@@ -41,6 +41,7 @@ public class DataSourceConfig {
             @Qualifier("masterDataSource") DataSource dataSource) {
         return new JdbcTemplate(dataSource);
     }
+
     @Bean(name = "slaveJdbcTemplate")
     public JdbcTemplate secondaryJdbcTemplate(
             @Qualifier("slaveDataSource") DataSource dataSource) {

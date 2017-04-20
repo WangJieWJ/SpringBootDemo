@@ -10,7 +10,6 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,11 +44,11 @@ public class RemoteShellExecutor {
     /**
      * 构造函数
      *
-     * @param ip
-     * @param userName
-     * @param passWord
+     * @param ip IP
+     * @param userName 用户名
+     * @param passWord 密码
      */
-    public RemoteShellExecutor(String ip, String userName, String passWord) {
+    private RemoteShellExecutor(String ip, String userName, String passWord) {
         this.ip = ip;
         this.userName = userName;
         this.passWord = passWord;
@@ -58,8 +57,8 @@ public class RemoteShellExecutor {
     /**
      * 登录
      *
-     * @return
-     * @throws IOException
+     * @return 是否能登录成功，可以用来测试用户名和密码是否正确
+     * @throws IOException 如果无法正常登录，抛出抛出异常
      */
     private boolean login() throws IOException {
         connection = new Connection(ip);
@@ -67,11 +66,11 @@ public class RemoteShellExecutor {
         return connection.authenticateWithPassword(userName, passWord);
     }
 
-    public int exec(String cmds) throws IOException {
+    private int exec(String cmds) throws IOException {
         InputStream stdOut = null;
         InputStream stdErr = null;
-        String outStr = "";
-        String outErr = "";
+        String outStr;
+        String outErr;
         int ret = -1;
         try {
             if (login()) {
@@ -102,9 +101,9 @@ public class RemoteShellExecutor {
                 String regEx="(?:location +)([\\d/a-zA-Z.]+)";
                 Pattern pat=Pattern.compile(regEx);
                 Matcher mat=pat.matcher(outStr);
-                StringBuffer stringBuffer=new StringBuffer("   ");
+                StringBuilder stringBuffer=new StringBuilder("   ");
                 while (mat.find()){
-                    stringBuffer.append(mat.group(1)+"   ");
+                    stringBuffer.append(mat.group(1)).append("   ");
                 }
 
                 outStr=stringBuffer.toString();

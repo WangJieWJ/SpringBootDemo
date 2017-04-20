@@ -22,14 +22,14 @@ public class LocalShellExecutor {
         try{
             Process process=Runtime.getRuntime().exec(cmds);
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
-            String line = null;
+            String line;
             StringBuilder sb = new StringBuilder();
             while ((line = br.readLine()) != null) {
-                sb.append(line + "\n");
+                sb.append(line).append("\n");
             }
             System.out.println(sb.toString());
         }catch (Exception e){
-
+            e.printStackTrace();
         }
 
     }
