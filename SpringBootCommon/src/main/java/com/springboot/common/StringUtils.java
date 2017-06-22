@@ -115,45 +115,55 @@ public class StringUtils {
 
     public static void main(String[] args) {
 
-        String regEx="(\\d+)(?:\\.?)(?:\\d+)([$￥])$";
-        Pattern pat=Pattern.compile(regEx);
-        Matcher mat=pat.matcher("104984.9848$");
-        System.out.println(mat.groupCount());
-        System.out.println(mat.matches());
-        System.out.println(mat.group(1)+mat.group(2));
+//        String regEx="(\\d+)(?:\\.?)(?:\\d+)([$￥])$";
+//        Pattern pat=Pattern.compile(regEx);
+//        Matcher mat=pat.matcher("104984.9848$");
+//        System.out.println(mat.groupCount());
+//        System.out.println(mat.matches());
+//        System.out.println(mat.group(1)+mat.group(2));
+//
+//        //Java正则表达式- 捕获组 与 非捕获组
+//        String text="<textarea rows=\"20\" cols=\"70\">nexus maven repository index properties updating index central</textarea>";
+//        String reg="<textarea.*>.*</textarea>";
+//        Pattern pattern=Pattern.compile(reg);
+//        Matcher matcher=pattern.matcher(text);
+//        while (matcher.find()){
+//            System.out.println(matcher.group());
+//        }
 
-        //Java正则表达式- 捕获组 与 非捕获组
-        String text="<textarea rows=\"20\" cols=\"70\">nexus maven repository index properties updating index central</textarea>";
-        String reg="<textarea.*>.*</textarea>";
-        Pattern pattern=Pattern.compile(reg);
-        Matcher matcher=pattern.matcher(text);
-        while (matcher.find()){
-            System.out.println(matcher.group());
+        String encString="sdf3[csdfasd7[as2[asdsad]d]]";
+        String regx="[a-b0-9]+(\\[[a-z0-9\\[\\]]+\\])[a-z0-9]+(\\[[a-z0-9\\[\\]]+\\])[a-z0-9]+";
+        Pattern patternEnc=Pattern.compile(regx);
+        Matcher matcherEnc=patternEnc.matcher(encString);
+        while (matcherEnc.find()){
+            System.out.println("符合");
         }
 
-        System.out.println("需求一");
+//        System.out.println("需求一");
+//
+//        //如果只想获取textarea标签中间的数据
+//        String reg1="(<textarea.*>)(.*)(</textarea>)";
+//        Pattern pattern1=Pattern.compile(reg1);
+//        Matcher matcher1=pattern1.matcher(text);
+//        while(matcher1.find()){
+//            System.out.println("输出全部内容"+matcher1.group(0));
+//            System.out.println(matcher1.group(1));
+//            System.out.println(matcher1.group(2));
+//            System.out.println(matcher1.group(3));
+//        }
+//
+//
+//        System.out.println("需求二");
+//        //至于非捕获组，只需要将捕获组中"()"变为"(?:)"即可
+//        String reg2="(?:<textarea.*>)(.*)(?:</textarea>)";
+//        Pattern pattern2=Pattern.compile(reg2);
+//        Matcher matcher2=pattern2.matcher(text);
+//        while (matcher2.find()){
+//            System.out.println("输出全部内容："+matcher2.group(0));
+//            System.out.println(matcher2.group(1));
+//        }
 
-        //如果只想获取textarea标签中间的数据
-        String reg1="(<textarea.*>)(.*)(</textarea>)";
-        Pattern pattern1=Pattern.compile(reg1);
-        Matcher matcher1=pattern1.matcher(text);
-        while(matcher1.find()){
-            System.out.println("输出全部内容"+matcher1.group(0));
-            System.out.println(matcher1.group(1));
-            System.out.println(matcher1.group(2));
-            System.out.println(matcher1.group(3));
-        }
 
-
-        System.out.println("需求二");
-        //至于非捕获组，只需要将捕获组中"()"变为"(?:)"即可
-        String reg2="(?:<textarea.*>)(.*)(?:</textarea>)";
-        Pattern pattern2=Pattern.compile(reg2);
-        Matcher matcher2=pattern2.matcher(text);
-        while (matcher2.find()){
-            System.out.println("输出全部内容："+matcher2.group(0));
-            System.out.println(matcher2.group(1));
-        }
     }
 
 }

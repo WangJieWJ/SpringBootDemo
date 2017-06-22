@@ -1,6 +1,6 @@
-import com.springBootBasic.SpringBootApp;
-import com.springBootBasic.dao.repository.UserRepository;
-import com.springBootBasic.pojo.User;
+import com.springbootbasic.SpringBootApp;
+import com.springbootbasic.dao.repository.UserRepository;
+import com.springbootbasic.pojo.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
