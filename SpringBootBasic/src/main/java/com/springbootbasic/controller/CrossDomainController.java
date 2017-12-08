@@ -56,7 +56,7 @@ public class CrossDomainController {
             System.out.println(item + ":" + request.getHeader(item));
         }
         System.out.println();
-        Cookie[] cookies = request.getCookies();
+            Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             System.out.println("输出Cookie中的所有值");
             for (Cookie cookie : cookies) {

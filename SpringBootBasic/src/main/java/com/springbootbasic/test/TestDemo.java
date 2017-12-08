@@ -1,6 +1,9 @@
 package com.springbootbasic.test;
 
-import org.quartz.*;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import org.quartz.SchedulerException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -47,8 +50,16 @@ public class TestDemo {
 //        String SQL="asdasd11";
 //        System.out.println(SQL.substring(0,SQL.length()-1));
 
-        test2();
+//        test2();
 
+        String config="{\"rank\":[{\"rankId\":\"1\",\"useFrequency\":1,\"useFrequencyLimitType\":2,\"useFrequencyNums\":1},{\"rankId\":\"1\",\"useFrequency\":1,\"useFrequencyLimitType\":2,\"useFrequencyNums\":1},{\"rankId\":\"1\",\"useFrequency\":1,\"useFrequencyLimitType\":2,\"useFrequencyNums\":1}],\"group\":[{\"groupId\":\"1\",\"useFrequency\":1,\"useFrequencyLimitType\":2,\"useFrequencyNums\":1},{\"groupId\":\"1\",\"useFrequency\":1,\"useFrequencyLimitType\":2,\"useFrequencyNums\":1}]}";
+        JSONObject jsonObject= JSON.parseObject(config);
+        JSONArray jsonArray=jsonObject.getJSONArray("rank1");
+        for(int i=0;i<jsonArray.size();i++){
+           JSONObject jsonObject1= (JSONObject) jsonArray.get(i);
+            System.out.println(jsonObject1.get("useFrequency"));
+
+        }
     }
 
     public static void test1() {

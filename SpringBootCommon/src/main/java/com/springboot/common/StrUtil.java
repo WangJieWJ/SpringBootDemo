@@ -17,6 +17,29 @@ public class StrUtil {
         return object == null ? "" : object.toString();
     }
 
+    /**
+     * 按照字节获取字符串的长度
+     * 一个英文字母(不区分大小写)包括英文标点占用一个字节的空间
+     * 一个中文汉字包括中文标点占用两个字节的空间
+     * @param s 字符串
+     * @return 字节长度
+     */
+    public static int getWordCount(String s) {
+        int length = 0;
+        if (s == null || "".equals(s.trim())) {
+            return length;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            int ascii = Character.codePointAt(s, i);
+            if (ascii >= 0 && ascii <= 255) {
+                length++;
+                continue;
+            }
+            length += 2;
+        }
+        return length;
+    }
+
     public static Integer toSafeInteger(Object object) {
         String Str = toSafeString(object);
         if (isEmpty(Str)) {
@@ -64,31 +87,36 @@ public class StrUtil {
     }
 
     public static void main(String[] args) {
-        //读取日志文件，并进行筛选
-        StringBuffer stringBuffer = new StringBuffer();
-        BufferedReader bufferedReader = null;
-        BufferedWriter bufferedWriter = null;
-        try {
-            bufferedReader = new BufferedReader(new FileReader("I:\\日志文件\\hyb.out"));
-            String str = null;
-            while ((str = bufferedReader.readLine()) != null) {
-                if (str.indexOf("来自haierBBS的【非动态】短信登陆") > 0) {
-                    stringBuffer.append(str + "\n");
-                }
-            }
+//        //读取日志文件，并进行筛选
+//        StringBuilder stringBuilder = new StringBuilder();
+//        BufferedReader bufferedReader = null;
+//        BufferedWriter bufferedWriter = null;
+//        try {
+//            bufferedReader = new BufferedReader(new FileReader("I:\\会员中心\\会员中心数据测试\\idsuser600000.sql"));
+//            String str = null;
+//            while ((str = bufferedReader.readLine()) != null) {
+//                stringBuilder.append(str.replaceAll("\"", "`")).append("\n");
+//                if (stringBuilder.length() > 60000) {
+//                    bufferedWriter = new BufferedWriter(new FileWriter("I:\\会员中心\\会员中心数据测试\\idsuser600000_update.sql", true));
+//                    bufferedWriter.write(stringBuilder.toString());
+//                    bufferedWriter.flush();
+//                    stringBuilder = new StringBuilder();
+//                }
+//            }
+//
+//            bufferedWriter.write(stringBuilder.toString());
+//            bufferedWriter.flush();
+//        } catch (IOException e) {
+//            try {
+//                bufferedReader.close();
+//                bufferedWriter.close();
+//            } catch (IOException e1) {
+//                e1.printStackTrace();
+//            }
+//            e.printStackTrace();
+//        }
 
-            bufferedWriter = new BufferedWriter(new FileWriter("I:\\日志文件\\Filter_haierBBS_非动态.txt"));
-            bufferedWriter.write(stringBuffer.toString());
-        } catch (IOException e) {
-            try {
-                bufferedReader.close();
-                bufferedWriter.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            e.printStackTrace();
-        }
-
+        System.out.println(getWordCount("你好中国，"));
 
     }
 
